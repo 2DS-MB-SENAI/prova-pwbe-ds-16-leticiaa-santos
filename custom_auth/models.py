@@ -6,3 +6,7 @@ class CustomUser(AbstractUser):
     address = models.TextField(blank=True, null=True)
     birth_date = models.DateField(blank=True, null=True)
     is_verified = models.BooleanField(default=False)
+    REQUIRED_FIELDS = ['phone']
+
+    def __str__(self):
+        return self.username
