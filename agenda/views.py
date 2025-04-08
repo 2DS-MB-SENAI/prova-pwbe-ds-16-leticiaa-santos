@@ -28,3 +28,27 @@ def servico_especifico(request, pk):
     
     serializer = ServicoSerializer(servico)
     return Response(serializer.data)
+
+
+@api_view(['GET','POST'])
+def agendamentos(request):
+    if request.method == 'GET':
+        agendamentos = Agendamento.objects.all()
+        serializer = AgendamentoSerializer(agendamentos, many=True)
+        return Response(serializer.data)
+    if request.method == 'POST':
+        serializer = AgendamentoSerializer(data=request.data, many=isinstance(request.data, list))
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['GET'])
+def agendamento_especifico(request, pk):
+    try:
+        agendamento = Agendamento.objects.get(pk=pk)
+    except Agendamento.DoesNotExist:
+        return Response({'erro': 'O agendamento não existe'}, status=status.HTTP_404_NOT_FOUND)
+
+    serializer = AgendamentoSerializer(agendamento)
+    return Response(serializer.data)
