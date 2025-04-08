@@ -29,8 +29,8 @@ def criar_usuario(request):
         username=username,
         password=senha,
         phone=phone,
-        address=address,
-        birth_date=birth_date,
-        is_verified=is_verified
+        # address=address,
+        # birth_date=birth_date,
+        # is_verified=is_verified
     )
     return Response({'Mensagem': f'Usuário {username} criado com sucesso'}, status=status.HTTP_201_CREATED)
