@@ -15,9 +15,14 @@ def espc_filter(request):
     medico = Medico.objects.filter(especialidade__icontains = filtro)
     return medico
 
-def detalhes_consulta(request, pk):
-    consultas = get_object_or_404(Consulta, pk=pk)
-    return render(request, 'clinica/form_consulta.html', {'consultas' : consultas})
+def detalhes_consulta(request):
+    consultas = Consulta.objects.all()
+    return render(request, 'clinica/detalhes_consulta.html', {'consultas' : consultas})
+
+# def detalhes_consulta(request, pk):
+#     consultas = get_object_or_404(Consulta, pk=pk)
+#     if request.method == 'POST':
+#         return render(request, 'clinica/detahes_consulta.html', {'consultas' : consultas})
 
 def criar_consulta(request):
     if request == 'POST':
