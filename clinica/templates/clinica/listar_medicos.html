@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Médicos</title>
+</head>
+<body>
+    <h1>Clinica</h1>
+
+    <h3>Médicos</h3>
+
+    <form method="post">
+        {% csrf_token %}
+        <input name="espc_filter" placeholder="Pesquise por especialidade" class="campo_pesquisa"></input>
+        <button type="submit">Pesquisar</button>
+    </form>
+
+    <ul>
+        <h3>lista de médicos</h3>
+        {% for i in medicos %}
+        <li>
+            <p>Nome: {{i.nome}}</p>
+            <p>Especialidade: {{i.especialidade}}</p>
+            <p>CRM: {{i.crm}}</p>
+            <p>E-mail: {{i.email}}</p>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        <h3>filtro por especialidade</h3>
+        {% for i in medico %}
+        <li>
+            <p>Nome: {{i.nome}}</p>
+            <p>Especialidade: {{i.especialidade}}</p>
+            <p>CRM: {{i.crm}}</p>
+            <p>E-mail: {{i.email}}</p>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
